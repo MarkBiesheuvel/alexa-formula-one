@@ -7,6 +7,8 @@ const drivers = [
     {name: 'Max Verstappen', team: 'Red Bull', points: 45}
 ]
 
+const http = require('http')
+
 exports.handler = (event, context, callback) => {
   console.log(JSON.stringify(event))
 
