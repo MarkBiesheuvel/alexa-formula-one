@@ -8,15 +8,15 @@ const response = require(`../ingest/standings_${year}.json`)
 const items = []
 
 const $ = cheerio.load(response.parse.text['*'])
-const table = $('#Results_and_standings').parent().nextAll('table').eq(2)
-let tr = table.find('.wikitable').find('tr')
+const table = $('#Results_and_standings').parent().nextAll('table').eq(2).find('.wikitable').eq(0)
+let tr = table.find('tr').eq(1)
 
 while(tr.length > 0) {
-  const position = tr.find('th').eq(0).text()
+  const position = tr.find('th,td').eq(0).text()
 
   if (position.match(/^\d+$/)) {
-    const name = tr.find('td').eq(0).find('a').eq(1).text()
-    const points = tr.find('th').eq(1).text()
+    const name = tr.find('th,td').eq(1).find('a').eq(1).text()
+    const points = tr.find('th,td').eq(-1).text()
 
     items.push({
       PutRequest: {
