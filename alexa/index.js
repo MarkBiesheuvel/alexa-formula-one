@@ -4,7 +4,7 @@ const dynamodb = new AWS.DynamoDB.DocumentClient({ region: 'eu-west-1' })
 
 const get = (slots, key, defaultValue) => {
   if (key in slots && 'value' in slots[key]) {
-    return slots[key].value
+    return parseInt(slots[key].value)
   } else {
     return defaultValue
   }
