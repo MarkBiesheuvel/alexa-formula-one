@@ -8,7 +8,7 @@ const response = require(`../ingest/standings_${year}.json`)
 const items = []
 
 const $ = cheerio.load(response.parse.text['*'])
-const table = $('#Results_and_standings').parent().nextAll('table').filter((i, el) => ($(el).find('th').eq(1).text() === 'Driver')).eq(0)
+const table = $('#Results_and_standings').parent().nextAll('table').filter((i, el) => $(el).find('th').eq(1).text().match(/Driver/)).eq(0)
 let tr = table.find('.wikitable').eq(0).find('tr').eq(1)
 
 while(tr.length > 0) {
