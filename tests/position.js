@@ -21,6 +21,9 @@ let event = {
       'slots': {
         'position': {
           'name': 'position'
+        },
+        'year': {
+          'name': 'year'
         }
       }
     }
@@ -30,11 +33,15 @@ let event = {
 if (process.argv.length > 2) {
   event.request.intent.slots.position.value = parseInt(process.argv[2])
 }
+if (process.argv.length > 3) {
+  event.request.intent.slots.year.value = parseInt(process.argv[3])
+}
 
-const index = require('../lambda/index')
+const index = require('../alexa/index')
 
 index.handler(event, null, (error, response) => {
   if (error) {
-    console.err(error)
+    console.error(error)
   }
+  console.log(response)
 })

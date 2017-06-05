@@ -15,6 +15,6 @@ const request = https.request({ host, path }, (response) => {
 })
 
 request.on('error', (error) => {
-  console.error(`Problem with request: ${error.message}`);
+  console.error(`Problem with request: ${error.message}`)
 })
 request.end()
